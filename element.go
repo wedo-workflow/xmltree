@@ -114,9 +114,13 @@ func (ele *Element) SearchFunc(fn func(*Element) bool) []*Element {
 		if fn(el) {
 			results = append(results, el)
 		}
-		log.Print(el.walk(search))
+		if err := el.walk(search); err != nil {
+			log.Print()
+		}
 	}
-	log.Print(ele.walk(search))
+	if err := ele.walk(search); err != nil {
+		log.Print()
+	}
 	return results
 }
 
